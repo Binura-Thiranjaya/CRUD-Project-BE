@@ -1,9 +1,16 @@
 const express =require("express");
 const mongoose =require('mongoose');
-
+const bodyParser= require('body-parser');
 
 const app = express();
 
+// Import route
+const signupRoute = require('./routes/signup.routes');
+
+//Midle ware
+app.use(bodyParser.json());
+
+app.use(signupRoute);
 const   PORT =8000;
 const DB_URL ='mongodb+srv://binura:binura12345@ms.vf1uu.mongodb.net/mscrudproject?retryWrites=true&w=majority';
 
