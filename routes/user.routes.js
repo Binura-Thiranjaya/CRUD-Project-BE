@@ -18,7 +18,7 @@ router.post('/user/signup',(req,res)=>{
     });
 });
 //GET POST
-router.get('/all',(req,res)=>{
+router.get('/user/all',(req,res)=>{
     Signup.find().exec((err,status)=>{
         if(err){
             return res.status(400).json({
@@ -50,4 +50,17 @@ router.put('/user/update/:id',(req,res)=>{
         }
     );
 });
+router.delete('/user/delete/:id',(req,res)=>{
+    Signup.findByIdAndDelete(req.params.id).exec((err,deleteUser)=>{
+        if(err){
+            return res.status(400).json({
+                message:"Something wrong "
+            });
+        }
+        return res.status(200).json({
+            success:"Deleted User"
+        }); 
+    });
+});
+
 module.exports = router;
